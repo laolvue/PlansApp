@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PlansApp.Models.PlansMessage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Recipient.nickName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecipientCategory.categoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.introMessage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.closingMessage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.planDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recipient.nickName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecipientCategory.categoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.introMessage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.closingMessage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.planDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.plansMessageId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.plansMessageId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.plansMessageId })
+        </td>
+    </tr>
+}
+
+</table>

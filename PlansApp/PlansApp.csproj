@@ -198,6 +198,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PlansMessagesController.cs" />
+    <Compile Include="Controllers\RecipientsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +222,10 @@
     <Compile Include="Migrations\201704032202081_added plans message table.cs" />
     <Compile Include="Migrations\201704032202081_added plans message table.Designer.cs">
       <DependentUpon>201704032202081_added plans message table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704032220479_added planDate column to plansMessage table.cs" />
+    <Compile Include="Migrations\201704032220479_added planDate column to plansMessage table.Designer.cs">
+      <DependentUpon>201704032220479_added planDate column to plansMessage table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -290,6 +296,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Recipients\Create.cshtml" />
+    <Content Include="Views\Recipients\Delete.cshtml" />
+    <Content Include="Views\Recipients\Details.cshtml" />
+    <Content Include="Views\Recipients\Edit.cshtml" />
+    <Content Include="Views\Recipients\Index.cshtml" />
+    <Content Include="Views\PlansMessages\Create.cshtml" />
+    <Content Include="Views\PlansMessages\Delete.cshtml" />
+    <Content Include="Views\PlansMessages\Details.cshtml" />
+    <Content Include="Views\PlansMessages\Edit.cshtml" />
+    <Content Include="Views\PlansMessages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704032202081_added plans message table.resx">
       <DependentUpon>201704032202081_added plans message table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704032220479_added planDate column to plansMessage table.resx">
+      <DependentUpon>201704032220479_added planDate column to plansMessage table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

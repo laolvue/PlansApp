@@ -21,5 +21,6 @@ namespace PlansApp.Models
         public string Location { get; set; }
         public string introMessage { get; set; }
         public string closingMessage { get; set; }
+        public DateTime planDate { get; set; }
     }
 }

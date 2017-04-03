@@ -1,0 +1,66 @@
+﻿@model PlansApp.Models.Recipient
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Recipient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RecipientCategory.categoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecipientCategory.categoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nickName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nickName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.emailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailAddress)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.recipientId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
