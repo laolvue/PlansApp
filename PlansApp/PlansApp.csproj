@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CheckInMessagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PlansMessagesController.cs" />
@@ -306,6 +307,11 @@
     <Content Include="Views\PlansMessages\Details.cshtml" />
     <Content Include="Views\PlansMessages\Edit.cshtml" />
     <Content Include="Views\PlansMessages\Index.cshtml" />
+    <Content Include="Views\CheckInMessages\Create.cshtml" />
+    <Content Include="Views\CheckInMessages\Delete.cshtml" />
+    <Content Include="Views\CheckInMessages\Details.cshtml" />
+    <Content Include="Views\CheckInMessages\Edit.cshtml" />
+    <Content Include="Views\CheckInMessages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

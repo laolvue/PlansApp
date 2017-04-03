@@ -1,0 +1,66 @@
+﻿@model PlansApp.Models.CheckInMessage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CheckInMessage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Recipient.nickName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recipient.nickName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecipientCategory.categoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecipientCategory.categoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.introMessage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.introMessage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.closingMessage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.closingMessage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.deadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deadline)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.checkInMessageId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
