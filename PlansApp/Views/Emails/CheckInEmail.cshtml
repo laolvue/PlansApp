@@ -1,0 +1,33 @@
+﻿@model PlansApp.Models.CheckInEmail
+@{
+    ViewBag.Title = "CheckInEmail";
+}
+
+<h2>CheckInEmail</h2>
+
+
+To: @Model.recipient             
+From: @Model.sendingUserEmailAddress
+Subject: Urgent: @Model.sendingUserName failed to check in
+
+@* Hello @Model.recipients. *@
+@Model.sendingUserName failed to check in. 
+Here is the message @Model.sendingUserName wanted you to see:
+
+@{ if (Model.introMessage != null)
+    {
+        @Model.introMessage
+    }
+}
+<h5>Plans:</h5>
+WHERE:
+@Model.Location
+DATE:
+@Model.planDate
+
+
+@{ if (Model.closingMessage != null)
+    {
+        @Model.closingMessage
+    }}
+

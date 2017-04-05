@@ -17,6 +17,7 @@ namespace PlansApp.Models
 
         public string UserEmail { get; set; }
 
+        [EmailAddress]
         public string emailAddress { get; set; }        //TODO email address type
 
         [ForeignKey("RecipientCategory")]

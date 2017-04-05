@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PlansApp.Models;
+using Hangfire;
+using Postal;
+
 
 namespace PlansApp.Controllers
 {
@@ -49,18 +52,63 @@ namespace PlansApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "checkInMessageId,recipientCategoryId,recipientId,Location,introMessage,closingMessage,deadline")] CheckInMessage checkInMessage)
+        public ActionResult Create([Bind(Include = "checkInMessageId,recipientCategoryId,recipientId,Location,introMessage,closingMessage,deadline")] CheckInMessage model)
         {
             if (ModelState.IsValid)
             {
-                db.CheckInMessages.Add(checkInMessage);
+                db.CheckInMessages.Add(model);
                 db.SaveChanges();
+
+                var emailViewModel = new CheckInEmailViewModel()
+                {
+                    planDate = model.planDate,
+                    introMessage = model.introMessage,
+                    closingMessage = model.closingMessage,
+                    Location = model.Location
+                };
+
+                if (model.RecipientCategory != null)
+                {
+                    var recipientsInCategory = from recipient in db.Recipients
+                                               where recipient.recipientCategoryId == model.recipientCategoryId
+                                               select recipient;
+                    foreach (var recipient in recipientsInCategory)
+                    {
+                        emailViewModel.recipients.Add(recipient);
+                    }
+
+                }
+                else
+                {
+                    var singleRecipient =
+                        from recipient in db.Recipients
+                        where recipient.UserEmail == model.Recipient.UserEmail
+                        select recipient;
+                    emailViewModel.recipients.Add(singleRecipient.FirstOrDefault());
+                }
+                for (int i = 0; i < emailViewModel.recipients.Count; i++)
+                {
+                    var email = new CheckInEmail()
+                    {
+                        recipient = emailViewModel.recipients[i],
+                        planDate = model.planDate,
+                        introMessage = model.introMessage,
+                        closingMessage = model.closingMessage,
+                        Location = model.Location,
+                        deadline= model.deadline
+                    };
+                    var jobId = BackgroundJob.Schedule(() => email.Send(), (email.deadline - DateTime.Now));
+
+                }
+
+                
+
                 return RedirectToAction("Index");
             }
 
-            ViewBag.recipientId = new SelectList(db.Recipients, "recipientId", "nickName", checkInMessage.recipientId);
-            ViewBag.recipientCategoryId = new SelectList(db.RecipientCategories, "recipientCategoryId", "categoryName", checkInMessage.recipientCategoryId);
-            return View(checkInMessage);
+            ViewBag.recipientId = new SelectList(db.Recipients, "recipientId", "nickName", model.recipientId);
+            ViewBag.recipientCategoryId = new SelectList(db.RecipientCategories, "recipientCategoryId", "categoryName", model.recipientCategoryId);
+            return View(model);
         }
 
         // GET: CheckInMessages/Edit/5
@@ -132,5 +180,11 @@ namespace PlansApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        //public ActionResult CheckIn()
+        //{
+        //    //Get User Id, Delete any pending Check-in messasges
+        //}
     }
 }

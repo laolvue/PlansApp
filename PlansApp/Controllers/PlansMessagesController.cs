@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PlansApp.Models;
+using Postal;
+using System.Activities.Statements;
 
 namespace PlansApp.Controllers
 {
@@ -49,18 +51,61 @@ namespace PlansApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "plansMessageId,recipientCategoryId,recipientId,Location,introMessage,closingMessage,planDate")] PlansMessage plansMessage)
+        public ActionResult Create([Bind(Include = "plansMessageId,recipientCategoryId,recipientId,Location,introMessage,closingMessage,planDate")] PlansMessage model)
         {
             if (ModelState.IsValid)
             {
-                db.PlansMessages.Add(plansMessage);
+                db.PlansMessages.Add(model);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                var emailViewModel = new PlansEmailViewModel()
+                {
+                    planDate = model.planDate,
+                    introMessage = model.introMessage,
+                    closingMessage = model.closingMessage,
+                    Location = model.Location
+                };
+
+                if (model.RecipientCategory != null)
+                {
+                    //select all recipients with a category id == 
+                    var recipientsInCategory = from recipient in db.Recipients
+                                               where recipient.recipientCategoryId == model.recipientCategoryId
+                                               select recipient;
+                    foreach (var recipient in recipientsInCategory)
+                    {
+                        emailViewModel.recipients.Add(recipient);
+                    }
+
+                }
+                else
+                {
+                    //select from recipients where recipientId==Id
+                    var singleRecipient =
+                        from recipient in db.Recipients
+                        where recipient.UserEmail == model.Recipient.UserEmail
+                        select recipient;
+                    emailViewModel.recipients.Add(singleRecipient.FirstOrDefault());
+                }
+                for (int i = 0; i < emailViewModel.recipients.Count; i++)
+                {
+                    var email = new PlansEmail()
+                    {
+                        recipient=emailViewModel.recipients[i],
+                        planDate = model.planDate,
+                        introMessage = model.introMessage,
+                        closingMessage = model.closingMessage,
+                        Location = model.Location
+                    };
+                    email.Send();
+                }
             }
 
-            ViewBag.recipientId = new SelectList(db.Recipients, "recipientId", "nickName", plansMessage.recipientId);
-            ViewBag.recipientCategoryId = new SelectList(db.RecipientCategories, "recipientCategoryId", "categoryName", plansMessage.recipientCategoryId);
-            return View(plansMessage);
+
+            ViewBag.recipientId = new SelectList(db.Recipients, "recipientId", "nickName", model.recipientId);
+            ViewBag.recipientCategoryId = new SelectList(db.RecipientCategories, "recipientCategoryId", "categoryName", model.recipientCategoryId);
+            return RedirectToAction("Index");
+           
         }
 
         // GET: PlansMessages/Edit/5

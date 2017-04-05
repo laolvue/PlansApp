@@ -4,10 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Postal;
+using System.Web.Mvc;
 
 namespace PlansApp.Models
 {
-    public class PlansMessage
+    public class PlansMessage 
     {
         [Key]
         public int plansMessageId { get; set; }
@@ -18,9 +20,14 @@ namespace PlansApp.Models
         [ForeignKey("Recipient")]
         public int recipientId { get; set; }
         public Recipient Recipient { get; set; }
+
         public string Location { get; set; }
         public string introMessage { get; set; }
         public string closingMessage { get; set; }
         public DateTime planDate { get; set; }
+
+        
     }
+
+
 }

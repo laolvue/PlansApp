@@ -4,13 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Postal;
 
 namespace PlansApp.Models
 {
-    public class CheckInMessage
+    public class CheckInMessage// :Email
     {
         [Key]
         public int checkInMessageId { get; set; }
+
         [ForeignKey("RecipientCategory")]
         public int recipientCategoryId { get; set; }
         public RecipientCategory RecipientCategory { get; set; }
@@ -18,9 +20,11 @@ namespace PlansApp.Models
         [ForeignKey("Recipient")]
         public int recipientId { get; set; }
         public Recipient Recipient { get; set; }
+
         public string Location { get; set; }
         public string introMessage { get; set; }
         public string closingMessage { get; set; }
         public DateTime deadline { get; set; }
+        public DateTime planDate { get; set; }
     }
 }

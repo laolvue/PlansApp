@@ -1,0 +1,32 @@
+﻿@model PlansApp.Models.PlansEmail
+@{
+    ViewBag.Title = "PlansEmail";
+}
+
+<h2>Plans Email</h2>
+
+To: @Model.recipient.emailAddress
+From: @Model.sendingUserEmailAddress
+Subject: Travel Plans
+
+ Hello @Model.recipient.nickName
+@Model.sendingUserName would like to let you know their travel plans. 
+
+
+@{ if (Model.introMessage != null)
+    {
+        @Model.introMessage
+    }
+}
+<h5>Plans:</h5>
+WHERE:
+@Model.Location
+DATE:
+@Model.planDate
+
+
+@{ if (Model.closingMessage != null)
+    {
+        @Model.closingMessage
+    }}
+
