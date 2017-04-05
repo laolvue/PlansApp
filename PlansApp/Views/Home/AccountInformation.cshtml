@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "AccountInformation";
+}
+
+<h2>Account Information</h2>
+
+<input type="button" class="btn btn-info" value="Add A Recipient"
+       onclick="location.href='@Url.Action("Create", "Recipients")'" />
+<br /><br />
+<input type="button" class="btn btn-info" value="Create Plans Message"
+       onclick="location.href='@Url.Action("Create", "PlansMessages")'" />
+<br /><br />
+<input type="button" class="btn btn-info" value="Create Check-In Message"
+       onclick="location.href='@Url.Action("Create", "CheckInMessages")'" />
+<br /><br />
+<input type="button" class="btn btn-info" value="Create Check-In Message"
+       onclick="location.href='@Url.Action("Create", "Check-In")'" />
+

@@ -365,6 +365,7 @@
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\CheckInEmail.cshtml" />
     <Content Include="Views\Emails\PlansEmail.cshtml" />
+    <Content Include="Views\Home\AccountInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
