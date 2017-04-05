@@ -273,6 +273,18 @@
     <Compile Include="Migrations\201704042122180_CheckInMessagePropertiesReadyToTest.Designer.cs">
       <DependentUpon>201704042122180_CheckInMessagePropertiesReadyToTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704051612282_nullableRecipientCategorIdInCheckInMessageModel.cs" />
+    <Compile Include="Migrations\201704051612282_nullableRecipientCategorIdInCheckInMessageModel.Designer.cs">
+      <DependentUpon>201704051612282_nullableRecipientCategorIdInCheckInMessageModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704051618439_NullableRecipientCategoryIdInRecipientModel.cs" />
+    <Compile Include="Migrations\201704051618439_NullableRecipientCategoryIdInRecipientModel.Designer.cs">
+      <DependentUpon>201704051618439_NullableRecipientCategoryIdInRecipientModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704051651021_hardcodedCheckInMessageTesting.cs" />
+    <Compile Include="Migrations\201704051651021_hardcodedCheckInMessageTesting.Designer.cs">
+      <DependentUpon>201704051651021_hardcodedCheckInMessageTesting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CheckInEmail.cs" />
@@ -363,7 +375,7 @@
     <Content Include="Views\CheckInMessages\Index.cshtml" />
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\Web.config" />
-    <Content Include="Views\Emails\CheckInEmail.cshtml" />
+    <Content Include="Views\Emails\CheckIn.cshtml" />
     <Content Include="Views\Emails\PlansEmail.cshtml" />
     <Content Include="Views\Home\AccountInformation.cshtml" />
   </ItemGroup>
@@ -417,6 +429,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704042122180_CheckInMessagePropertiesReadyToTest.resx">
       <DependentUpon>201704042122180_CheckInMessagePropertiesReadyToTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704051612282_nullableRecipientCategorIdInCheckInMessageModel.resx">
+      <DependentUpon>201704051612282_nullableRecipientCategorIdInCheckInMessageModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704051618439_NullableRecipientCategoryIdInRecipientModel.resx">
+      <DependentUpon>201704051618439_NullableRecipientCategoryIdInRecipientModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704051651021_hardcodedCheckInMessageTesting.resx">
+      <DependentUpon>201704051651021_hardcodedCheckInMessageTesting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

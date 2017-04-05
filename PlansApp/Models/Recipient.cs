@@ -21,7 +21,7 @@ namespace PlansApp.Models
         public string emailAddress { get; set; }        //TODO email address type
 
         [ForeignKey("RecipientCategory")]
-        public int recipientCategoryId { get; set; }
+        public int? recipientCategoryId { get; set; }
         public RecipientCategory RecipientCategory { get; set; }
     }
 }

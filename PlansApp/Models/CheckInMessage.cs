@@ -14,7 +14,7 @@ namespace PlansApp.Models
         public int checkInMessageId { get; set; }
 
         [ForeignKey("RecipientCategory")]
-        public int recipientCategoryId { get; set; }
+        public int? recipientCategoryId { get; set; }
         public RecipientCategory RecipientCategory { get; set; }
 
         [ForeignKey("Recipient")]

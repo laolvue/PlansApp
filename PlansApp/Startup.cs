@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using Hangfire;
 
 [assembly: OwinStartupAttribute(typeof(PlansApp.Startup))]
 namespace PlansApp
@@ -8,7 +9,7 @@ namespace PlansApp
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            GlobalConfiguration.Configuration.UseSqlServerStorage("DefaultConnection");
         }
     }
 }

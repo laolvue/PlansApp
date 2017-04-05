@@ -56,6 +56,20 @@ namespace PlansApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                //hard-coding some data to test email sending functionality
+                model.closingMessage = "bye";
+                model.introMessage = "hi";
+                model.deadline = DateTime.Today;
+                model.Location = "Madrid";
+                model.planDate = DateTime.Today;
+                Recipient testingRecipient = new Recipient();
+                model.Recipient = testingRecipient;
+                model.Recipient.recipientId = 1;
+                model.Recipient.emailAddress = "PotassiumSubscriber1@gmail.com";
+                model.Recipient.UserEmail = "ian.stew12 @gmail.com";
+                model.Recipient.nickName = "LilRecipient";
+                
+
                 db.CheckInMessages.Add(model);
                 db.SaveChanges();
 
@@ -80,11 +94,12 @@ namespace PlansApp.Controllers
                 }
                 else
                 {
-                    var singleRecipient =
-                        from recipient in db.Recipients
-                        where recipient.UserEmail == model.Recipient.UserEmail
-                        select recipient;
-                    emailViewModel.recipients.Add(singleRecipient.FirstOrDefault());
+                    var singleRecipient = testingRecipient;     //delete after = to undo hard-coding
+                    //from recipient in db.Recipients
+                    //where recipient.UserEmail == model.Recipient.UserEmail
+                    //select recipient;
+                    emailViewModel.recipients = new List<Recipient>();
+                    emailViewModel.recipients.Add(singleRecipient);//.FirstOrDefault());
                 }
                 for (int i = 0; i < emailViewModel.recipients.Count; i++)
                 {
@@ -97,8 +112,8 @@ namespace PlansApp.Controllers
                         Location = model.Location,
                         deadline= model.deadline
                     };
-                    var jobId = BackgroundJob.Schedule(() => email.Send(), (email.deadline - DateTime.Now));
-
+                    //var jobId = BackgroundJob.Schedule(() => email.Send(), (email.deadline - DateTime.Now));
+                    email.Send();
                 }
 
                 
