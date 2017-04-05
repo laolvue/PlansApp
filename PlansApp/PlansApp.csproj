@@ -312,6 +312,7 @@
     <Content Include="Views\CheckInMessages\Details.cshtml" />
     <Content Include="Views\CheckInMessages\Edit.cshtml" />
     <Content Include="Views\CheckInMessages\Index.cshtml" />
+    <Content Include="Views\Home\AccountInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

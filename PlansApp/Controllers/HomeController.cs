@@ -13,9 +13,14 @@ namespace PlansApp.Controllers
             return View();
         }
 
+        public ActionResult accountInformation()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Have you ever wished that there was a really easy and convenient way to keep track of friends and family when they are away from you?";
 
             return View();
         }
